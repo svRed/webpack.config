@@ -1,3 +1,4 @@
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
     template: './src/index.html',
@@ -6,9 +7,9 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 });
 
 module.exports = {
-    entry:  __dirname + '/src/index.js',
+    entry: './src/index.js',
     output: {
-        path: __dirname+'/build',
+        path: path.resolve(__dirname+'/build'),
         filename: 'bundle.js'
     },
     module: {
@@ -19,5 +20,8 @@ module.exports = {
         }]
     },
     devtool: 'source-map',
+    resolve: {
+        modules: [path.resolve(__dirname, "src"), "node_modules"]
+    },
     plugins: [HtmlWebpackPluginConfig]
 };
